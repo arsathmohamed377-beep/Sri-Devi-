@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Devi Silks – KK Nagar, Chennai</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --maroon: #6B0F1A;
+  --maroon-deep: #4A0A12;
+  --maroon-light: #8B1A2A;
+  --gold: #C9A84C;
+  --gold-light: #E8C96B;
+  --gold-pale: #F5E6B3;
+  --cream: #FDF6E3;
+  --white: #FFFFFF;
+  --text-dark: #2C1810;
+  --text-mid: #5A3525;
+  --text-light: #8B6A5A;
+  --border: #D4AF6A;
+  --shadow: rgba(107,15,26,0.15);
+  --shadow-gold: rgba(201,168,76,0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ── PAGES ── */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ══════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════ */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: var(--maroon-deep);
+  border-bottom: 2px solid var(--gold);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.nav-brand {
+  display: flex; flex-direction: column;
+  cursor: pointer;
+}
+.nav-brand-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+.nav-brand-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.nav-icons {
+  display: flex; gap: 8px; align-items: center;
+}
+.nav-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--gold-light);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2px; padding: 8px 10px; border-radius: 6px;
+  transition: background 0.2s;
+  position: relative;
+  font-size: 0.55rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.nav-btn:hover { background: rgba(201,168,76,0.1); }
+.nav-btn svg { width: 20px; height: 20px; }
+.badge {
+  position: absolute; top: 4px; right: 4px;
+  background: var(--gold);
+  color: var(--maroon-deep);
+  font-size: 0.55rem; font-weight: 700;
+  border-radius: 50%; width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+  display: none;
+}
+.badge.show { display: flex; }
+
+/* GOLD DIVIDER */
+.gold-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 auto 32px;
+  max-width: 400px;
+}
+.gold-divider::before, .gold-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.gold-divider::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.gold-divider span {
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+
+/* ══════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════ */
+#page-home {
+  background: var(--maroon-deep);
+}
+
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1600&auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center 30%;
+  filter: brightness(0.35) saturate(0.8);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(74,10,18,0.85) 0%, rgba(107,15,26,0.6) 50%, rgba(74,10,18,0.85) 100%);
+}
+.hero-pattern {
+  position: absolute; inset: 0;
+  opacity: 0.04;
+  background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+  background-size: 20px 20px;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 20px;
+  animation: fadeInUp 1s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-badge {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.hero-title span {
+  color: var(--gold-light);
+  font-style: italic;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: rgba(245,230,179,0.85);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hero-location {
+  font-size: 0.85rem;
+  color: rgba(201,168,76,0.7);
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+.hero-location svg { width: 14px; height: 14px; display: inline; vertical-align: middle; margin-right: 4px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--maroon-deep);
+  font-family: 'Lato', sans-serif;
+  font-weight: 700; font-size: 0.85rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 16px 40px;
+  border: none; cursor: pointer;
+  border-radius: 2px;
+  box-shadow: 0 8px 30px var(--shadow-gold);
+  transition: all 0.3s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px var(--shadow-gold);
+}
+.btn-primary svg { width: 18px; height: 18px; transition: transform 0.3s; }
+.btn-primary:hover svg { transform: translateX(4px); }
+
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(201,168,76,0.6); font-size: 0.65rem; letter-spacing: 2px;
+  text-transform: uppercase; z-index: 2;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+.hero-scroll svg { width: 20px; height: 20px; }
+
+/* Features strip */
+.features-strip {
+  background: var(--maroon);
+  border-top: 1px solid rgba(201,168,76,0.3);
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding: 20px 0;
+  overflow: hidden;
+}
+.features-inner {
+  display: flex; gap: 48px;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.feat-item {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--gold-light);
+  font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.feat-item svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   SECTION HEADER
+══════════════════════════════════════ */
+.section-header {
+  text-align: center;
+  padding: 70px 20px 40px;
+}
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--maroon-deep);
+  margin-bottom: 14px;
+}
+.section-title em { font-style: italic; color: var(--maroon-light); }
+.section-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  max-width: 520px; margin: 0 auto;
+}
+
+/* ══════════════════════════════════════
+   CATEGORIES PAGE
+══════════════════════════════════════ */
+#page-categories { background: var(--cream); padding-top: 64px; }
+
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  padding: 0 24px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cat-card {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 320px;
+  box-shadow: 0 8px 30px var(--shadow);
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+.cat-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(107,15,26,0.25); }
+.cat-card-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+  display: block;
+}
+.cat-card:hover .cat-card-img { transform: scale(1.06); }
+.cat-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(74,10,18,0.92) 0%, rgba(74,10,18,0.3) 55%, transparent 100%);
+  transition: background 0.3s;
+}
+.cat-card:hover .cat-card-overlay { background: linear-gradient(to top, rgba(74,10,18,0.95) 0%, rgba(74,10,18,0.5) 65%, transparent 100%); }
+.cat-card-body {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 20px;
+}
+.cat-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; color: var(--white);
+  margin-bottom: 6px;
+}
+.cat-card-count {
+  font-size: 0.72rem; color: var(--gold);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.cat-explore-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--maroon-deep);
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 8px 18px; border: none; cursor: pointer;
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+.cat-explore-btn:hover { transform: scale(1.04); }
+.cat-explore-btn svg { width: 14px; height: 14px; }
+
+/* ══════════════════════════════════════
+   PRODUCTS PAGE
+══════════════════════════════════════ */
+#page-products { background: var(--cream); padding-top: 64px; }
+
+.products-header {
+  background: var(--maroon);
+  padding: 28px 24px;
+  display: flex; align-items: center; gap: 16px;
+  border-bottom: 2px solid var(--gold);
+}
+.back-btn {
+  background: none; border: 1px solid var(--gold);
+  color: var(--gold); cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 2px;
+  font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.back-btn:hover { background: var(--gold); color: var(--maroon-deep); }
+.back-btn svg { width: 16px; height: 16px; }
+.products-header-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; color: var(--white);
+}
+.products-header-text p { font-size: 0.8rem; color: var(--gold); margin-top: 2px; }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 32px 24px 60px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.prod-card {
+  background: var(--white);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--shadow);
+  border: 1px solid rgba(212,175,106,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+}
+.prod-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--shadow); }
+
+.prod-img-wrap {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: #f5ede0;
+}
+.prod-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.prod-card:hover .prod-img { transform: scale(1.05); }
+
+.prod-wish-btn {
+  position: absolute; top: 10px; right: 10px;
+  width: 34px; height: 34px;
+  background: rgba(255,255,255,0.92);
+  border: none; border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  transition: all 0.2s;
+}
+.prod-wish-btn:hover { background: #ffe0e4; transform: scale(1.1); }
+.prod-wish-btn svg { width: 16px; height: 16px; transition: fill 0.2s; }
+.prod-wish-btn.active svg { fill: #e53935; stroke: #e53935; }
+
+.prod-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--maroon);
+  color: var(--gold-light);
+  font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 10px;
+  font-weight: 700;
+}
+
+.prod-body {
+  padding: 16px;
+  flex: 1; display: flex; flex-direction: column;
+}
+.prod-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  color: var(--maroon-deep);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.prod-price {
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--maroon);
+  margin-bottom: 14px;
+}
+.prod-price span { font-size: 0.8rem; color: var(--text-light); font-weight: 400; text-decoration: line-through; margin-left: 6px; }
+
+.prod-actions {
+  display: flex; gap: 8px;
+  flex-wrap: wrap;
+}
+.btn-cart {
+  flex: 1;
+  background: var(--maroon-deep);
+  color: var(--gold-light);
+  border: none; cursor: pointer;
+  font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;
+  padding: 10px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.btn-cart:hover { background: var(--maroon-light); }
+.btn-cart svg { width: 14px; height: 14px; }
+.btn-cart.added { background: #2d6a4f; }
+
+.btn-buy {
+  flex: 1;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--maroon-deep);
+  border: none; cursor: pointer;
+  font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;
+  padding: 10px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-buy:hover { opacity: 0.9; }
+
+/* ══════════════════════════════════════
+   PRODUCT DETAIL (BUY NOW FLOW)
+══════════════════════════════════════ */
+#page-detail, #page-address, #page-payment, #page-success, #page-track {
+  padding-top: 64px; background: var(--cream);
+}
+
+.detail-container {
+  max-width: 900px; margin: 0 auto; padding: 40px 24px;
+}
+
+.detail-card {
+  background: var(--white);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 640px) { .detail-card { grid-template-columns: 1fr; } }
+.detail-img { width: 100%; height: 450px; object-fit: cover; }
+.detail-info { padding: 40px 32px; display: flex; flex-direction: column; justify-content: center; }
+.detail-cat-tag {
+  font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+  font-family: 'Cormorant Garamond', serif;
+}
+.detail-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem; color: var(--maroon-deep);
+  margin-bottom: 12px; line-height: 1.25;
+}
+.detail-price { font-size: 2rem; font-weight: 700; color: var(--maroon); margin-bottom: 20px; }
+.detail-price small { font-size: 1rem; color: var(--text-light); font-weight: 400; text-decoration: line-through; margin-left: 8px; }
+.detail-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; color: var(--text-mid);
+  line-height: 1.7; margin-bottom: 28px;
+}
+.detail-features { list-style: none; margin-bottom: 32px; }
+.detail-features li {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85rem; color: var(--text-mid);
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(212,175,106,0.2);
+}
+.detail-features li::before { content: '✦'; color: var(--gold); font-size: 0.6rem; }
+
+.btn-confirm {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--maroon-deep);
+  border: none; cursor: pointer;
+  font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; padding: 16px 32px;
+  border-radius: 2px; width: 100%;
+  box-shadow: 0 6px 24px var(--shadow-gold);
+  transition: all 0.3s;
+}
+.btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 10px 32px var(--shadow-gold); }
+
+/* ══════════════════════════════════════
+   ADDRESS FORM
+══════════════════════════════════════ */
+.form-container {
+  max-width: 580px; margin: 0 auto; padding: 40px 24px;
+}
+.form-card {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 40px;
+  box-shadow: 0 8px 40px var(--shadow);
+}
+.form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; color: var(--maroon-deep);
+  margin-bottom: 6px;
+}
+.form-sub { font-size: 0.85rem; color: var(--text-light); margin-bottom: 32px; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--maroon);
+  margin-bottom: 8px;
+}
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%;
+  border: 1.5px solid rgba(212,175,106,0.5);
+  border-radius: 2px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-family: 'Lato', sans-serif;
+  color: var(--text-dark);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group textarea:focus {
+  border-color: var(--gold);
+  background: var(--white);
+}
+.form-group textarea { height: 100px; resize: none; }
+
+.form-error { color: #c0392b; font-size: 0.78rem; margin-top: 5px; display: none; }
+.form-error.show { display: block; }
+
+/* ══════════════════════════════════════
+   PAYMENT PAGE
+══════════════════════════════════════ */
+.payment-container {
+  max-width: 520px; margin: 0 auto; padding: 40px 24px;
+}
+.payment-card {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 40px;
+  box-shadow: 0 8px 40px var(--shadow);
+  text-align: center;
+}
+.payment-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; color: var(--maroon-deep);
+  margin-bottom: 6px;
+}
+.payment-sub { font-size: 0.85rem; color: var(--text-light); margin-bottom: 32px; }
+.payment-amount {
+  background: var(--maroon-deep);
+  color: var(--gold-light);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+.payment-amount .label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.payment-amount .amount { font-family: 'Playfair Display', serif; font-size: 2.2rem; }
+.pay-methods { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+.pay-method {
+  border: 1.5px solid rgba(212,175,106,0.5);
+  border-radius: 4px;
+  padding: 20px;
+  text-align: left;
+}
+.pay-method-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.pay-icon { font-size: 1.4rem; }
+.pay-method-name { font-weight: 700; font-size: 0.9rem; color: var(--maroon); }
+.pay-detail { font-size: 0.85rem; color: var(--text-mid); }
+.pay-detail strong { color: var(--maroon-deep); font-size: 1rem; }
+.pay-qr {
+  background: var(--gold-pale);
+  border-radius: 4px;
+  padding: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--maroon);
+  margin-top: 8px;
+  word-break: break-all;
+  font-weight: 600;
+}
+.btn-paid {
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  color: var(--white);
+  border: none; cursor: pointer;
+  font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; padding: 16px 32px;
+  border-radius: 2px; width: 100%;
+  transition: all 0.3s;
+}
+.btn-paid:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,106,79,0.3); }
+
+/* ══════════════════════════════════════
+   SUCCESS PAGE
+══════════════════════════════════════ */
+.success-container {
+  max-width: 520px; margin: 0 auto; padding: 60px 24px;
+  text-align: center;
+}
+.success-icon {
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 8px 30px rgba(45,106,79,0.3);
+}
+.success-icon svg { width: 40px; height: 40px; color: var(--white); }
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--maroon-deep);
+  margin-bottom: 10px;
+}
+.success-sub { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 32px; }
+.order-id-box {
+  background: var(--maroon-deep);
+  color: var(--gold-light);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+.order-id-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.order-id-value { font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 4px; }
+.btn-track {
+  background: var(--maroon-deep);
+  color: var(--gold-light);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; padding: 14px 32px;
+  border-radius: 2px; width: 100%;
+  transition: all 0.3s;
+}
+.btn-track:hover { background: var(--gold); color: var(--maroon-deep); }
+
+/* ══════════════════════════════════════
+   TRACK PAGE
+══════════════════════════════════════ */
+.track-container {
+  max-width: 580px; margin: 0 auto; padding: 40px 24px;
+}
+.track-card {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 40px;
+  box-shadow: 0 8px 40px var(--shadow);
+}
+.track-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; color: var(--maroon-deep);
+  margin-bottom: 6px;
+}
+.track-order-id { font-size: 0.8rem; color: var(--text-light); margin-bottom: 36px; }
+.track-order-id strong { color: var(--gold); }
+
+.track-steps { position: relative; }
+.track-step {
+  display: flex; gap: 16px;
+  position: relative;
+  padding-bottom: 32px;
+}
+.track-step:last-child { padding-bottom: 0; }
+.track-step-icon-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  flex-shrink: 0;
+}
+.track-step-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid rgba(212,175,106,0.3);
+  background: var(--cream);
+  color: var(--text-light);
+  position: relative; z-index: 1;
+}
+.track-step-icon svg { width: 20px; height: 20px; }
+.track-step.done .track-step-icon {
+  background: var(--maroon-deep);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+.track-step.current .track-step-icon {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--maroon-deep);
+  box-shadow: 0 0 0 6px rgba(201,168,76,0.15);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 6px rgba(201,168,76,0.15); } 50% { box-shadow: 0 0 0 12px rgba(201,168,76,0.05); } }
+.track-step-line {
+  width: 2px; flex: 1;
+  background: rgba(212,175,106,0.2);
+  margin-top: 4px; min-height: 28px;
+}
+.track-step.done .track-step-line { background: var(--gold); }
+.track-step-info { padding-top: 10px; }
+.track-step-name {
+  font-weight: 700; font-size: 0.95rem;
+  color: var(--text-light);
+}
+.track-step.done .track-step-name, .track-step.current .track-step-name {
+  color: var(--maroon-deep);
+}
+.track-step.current .track-step-name { color: var(--maroon); }
+.track-step-time { font-size: 0.78rem; color: var(--text-light); margin-top: 3px; }
+
+/* ══════════════════════════════════════
+   CART PAGE
+══════════════════════════════════════ */
+#page-cart { background: var(--cream); padding-top: 64px; }
+
+.cart-container {
+  max-width: 1000px; margin: 0 auto; padding: 40px 24px;
+  display: grid; grid-template-columns: 1fr 340px; gap: 28px;
+}
+@media (max-width: 768px) { .cart-container { grid-template-columns: 1fr; } }
+
+.cart-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--maroon-deep);
+  margin-bottom: 24px;
+}
+.cart-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-light);
+}
+.cart-empty svg { width: 64px; height: 64px; margin-bottom: 16px; color: rgba(212,175,106,0.4); }
+.cart-empty h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--maroon-deep); margin-bottom: 8px; }
+
+.cart-item {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex; gap: 16px;
+  box-shadow: 0 2px 12px var(--shadow);
+  margin-bottom: 16px;
+  border: 1px solid rgba(212,175,106,0.15);
+}
+.cart-item-img {
+  width: 90px; height: 110px;
+  object-fit: cover; border-radius: 2px;
+  flex-shrink: 0;
+}
+.cart-item-info { flex: 1; }
+.cart-item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; color: var(--maroon-deep);
+  margin-bottom: 4px;
+}
+.cart-item-cat { font-size: 0.72rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.cart-item-price { font-size: 1.05rem; font-weight: 700; color: var(--maroon); margin-bottom: 12px; }
+.qty-controls {
+  display: flex; align-items: center; gap: 0;
+}
+.qty-btn {
+  width: 30px; height: 30px;
+  background: var(--maroon-deep);
+  color: var(--gold-light);
+  border: none; cursor: pointer;
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.qty-btn:hover { background: var(--maroon-light); }
+.qty-num {
+  width: 36px; height: 30px;
+  background: var(--cream);
+  border: 1px solid rgba(212,175,106,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+}
+.cart-item-remove {
+  align-self: flex-start;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-light); padding: 4px;
+  transition: color 0.2s;
+}
+.cart-item-remove:hover { color: #c0392b; }
+.cart-item-remove svg { width: 18px; height: 18px; }
+
+.cart-summary {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 28px;
+  box-shadow: 0 8px 30px var(--shadow);
+  border: 1px solid rgba(212,175,106,0.2);
+  height: fit-content;
+  position: sticky; top: 80px;
+}
+.cart-summary-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; color: var(--maroon-deep);
+  margin-bottom: 20px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(212,175,106,0.3);
+}
+.summary-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.9rem; color: var(--text-mid);
+  padding: 8px 0;
+}
+.summary-row.total {
+  font-weight: 700; font-size: 1.1rem;
+  color: var(--maroon-deep);
+  border-top: 2px solid var(--gold);
+  margin-top: 12px; padding-top: 16px;
+}
+.btn-checkout {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--maroon-deep);
+  border: none; cursor: pointer;
+  font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; padding: 15px;
+  border-radius: 2px; width: 100%; margin-top: 20px;
+  transition: all 0.3s;
+}
+.btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow-gold); }
+
+/* ══════════════════════════════════════
+   WISHLIST PAGE
+══════════════════════════════════════ */
+#page-wishlist { background: var(--cream); padding-top: 64px; }
+.wishlist-container {
+  max-width: 1100px; margin: 0 auto; padding: 40px 24px;
+}
+.wishlist-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--maroon-deep);
+  margin-bottom: 28px;
+}
+.wishlist-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-light);
+}
+.wishlist-empty svg { width: 64px; height: 64px; margin-bottom: 16px; color: rgba(212,175,106,0.4); }
+.wishlist-empty h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--maroon-deep); margin-bottom: 8px; }
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast-container {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex; flex-direction: column; gap: 10px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--maroon-deep);
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  display: flex; align-items: center; gap: 8px;
+  animation: toastIn 0.3s ease, toastOut 0.3s ease 2.7s forwards;
+  white-space: nowrap;
+}
+.toast.success { border-color: #40916c; }
+.toast svg { width: 16px; height: 16px; flex-shrink: 0; }
+@keyframes toastIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes toastOut { from { opacity: 1; } to { opacity: 0; } }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.site-footer {
+  background: var(--maroon-deep);
+  border-top: 2px solid var(--gold);
+  padding: 32px 24px;
+  text-align: center;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; color: var(--gold-light);
+  margin-bottom: 8px;
+}
+.footer-info { font-size: 0.8rem; color: rgba(201,168,76,0.6); letter-spacing: 1px; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 480px) {
+  .cats-grid { grid-template-columns: 1fr; padding: 0 16px 40px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 20px 12px 40px; }
+  .prod-img-wrap { height: 200px; }
+  .detail-img { height: 260px; }
+  .form-card { padding: 24px 20px; }
+  .payment-card { padding: 24px 20px; }
+  .track-card { padding: 24px 20px; }
+  .cart-summary { position: static; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════ NAVBAR ════════════════════════════ -->
+<nav class="navbar">
+  <div class="nav-brand" onclick="showPage('home')">
+    <span class="nav-brand-main">Sri Devi Silks</span>
+    <span class="nav-brand-sub">KK Nagar · Chennai</span>
+  </div>
+  <div class="nav-icons">
+    <button class="nav-btn" onclick="showPage('wishlist')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Wishlist
+      <span class="badge" id="wishlist-badge">0</span>
+    </button>
+    <button class="nav-btn" onclick="showPage('cart')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cart
+      <span class="badge" id="cart-badge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════ HOME PAGE ════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Since 1987 · Authentic Handlooms</div>
+      <h1 class="hero-title">Sri Devi <em>Silks</em></h1>
+      <p class="hero-sub">Where Tradition Meets Elegance</p>
+      <p class="hero-location">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        KK Nagar, Chennai
+      </p>
+      <button class="btn-primary" onclick="showPage('categories')">
+        Explore Store
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="hero-scroll">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      Scroll
+    </div>
+  </div>
+  <div class="features-strip">
+    <div class="features-inner" id="features-inner"></div>
+  </div>
+  <div class="section-header">
+    <div class="section-label">Curated Collections</div>
+    <h2 class="section-title">Timeless <em>Silks</em> for Every Occasion</h2>
+    <p class="section-desc">Explore our hand-curated selection of pure silk sarees, woven with heritage and worn with pride.</p>
+  </div>
+  <div class="gold-divider"><span>✦</span></div>
+  <div style="text-align:center; padding-bottom: 60px;">
+    <button class="btn-primary" onclick="showPage('categories')">
+      Browse All Categories
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-brand">Sri Devi Silks</div>
+    <div class="footer-info">KK Nagar, Chennai · 📞 8610019464 · Quality Guaranteed Since 1987</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════ CATEGORIES PAGE ════════════════════════════ -->
+<div id="page-categories" class="page">
+  <div class="section-header">
+    <div class="section-label">Our Collections</div>
+    <h2 class="section-title">Shop by <em>Category</em></h2>
+    <p class="section-desc">Handpicked categories from our finest textile traditions across South India.</p>
+  </div>
+  <div class="gold-divider"><span>✦</span></div>
+  <div class="cats-grid" id="cats-grid"></div>
+  <footer class="site-footer">
+    <div class="footer-brand">Sri Devi Silks</div>
+    <div class="footer-info">KK Nagar, Chennai · 📞 8610019464</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════ PRODUCTS PAGE ════════════════════════════ -->
+<div id="page-products" class="page">
+  <div class="products-header">
+    <button class="back-btn" onclick="showPage('categories')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="products-header-text">
+      <h2 id="products-cat-title">Category</h2>
+      <p>15 Products · Authentic Handloom Weaves</p>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+</div>
+
+<!-- ════════════════════════════ DETAIL PAGE ════════════════════════════ -->
+<div id="page-detail" class="page">
+  <div class="detail-container">
+    <button class="back-btn" id="detail-back-btn" style="margin-bottom:20px;" onclick="goBackFromDetail()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Products
+    </button>
+    <div class="detail-card">
+      <img id="detail-img" class="detail-img" src="" alt="">
+      <div class="detail-info">
+        <div class="detail-cat-tag" id="detail-cat">Category</div>
+        <h2 class="detail-name" id="detail-name">Product Name</h2>
+        <div class="detail-price" id="detail-price">₹0 <small id="detail-mrp">₹0</small></div>
+        <p class="detail-desc" id="detail-desc">Description</p>
+        <ul class="detail-features" id="detail-features"></ul>
+        <button class="btn-confirm" onclick="confirmOrder()">
+          Confirm Order — Proceed to Address →
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ ADDRESS PAGE ════════════════════════════ -->
+<div id="page-address" class="page">
+  <div class="form-container">
+    <div class="form-card">
+      <h2 class="form-title">Delivery Address</h2>
+      <p class="form-sub">Enter your details to complete the order</p>
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="addr-name" placeholder="Enter your full name">
+        <div class="form-error" id="err-name">Please enter your name</div>
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" id="addr-phone" placeholder="10-digit mobile number">
+        <div class="form-error" id="err-phone">Please enter a valid 10-digit number</div>
+      </div>
+      <div class="form-group">
+        <label>Full Address *</label>
+        <textarea id="addr-address" placeholder="Door No, Street, Area, City, Pincode"></textarea>
+        <div class="form-error" id="err-address">Please enter your full address</div>
+      </div>
+      <button class="btn-confirm" onclick="submitAddress()">
+        Continue to Payment →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ PAYMENT PAGE ════════════════════════════ -->
+<div id="page-payment" class="page">
+  <div class="payment-container">
+    <div class="payment-card">
+      <h2 class="payment-title">Complete Payment</h2>
+      <p class="payment-sub">Scan & pay using UPI or Google Pay</p>
+      <div class="payment-amount">
+        <div class="label">Amount Payable</div>
+        <div class="amount" id="pay-amount">₹0</div>
+      </div>
+      <div class="pay-methods">
+        <div class="pay-method">
+          <div class="pay-method-head">
+            <span class="pay-icon">📱</span>
+            <span class="pay-method-name">Google Pay</span>
+          </div>
+          <div class="pay-detail">Send to: <strong>8610019464</strong></div>
+          <div class="pay-qr">GPay Number: 8610019464</div>
+        </div>
+        <div class="pay-method">
+          <div class="pay-method-head">
+            <span class="pay-icon">🏦</span>
+            <span class="pay-method-name">UPI Transfer</span>
+          </div>
+          <div class="pay-detail">UPI ID:</div>
+          <div class="pay-qr">arsathmohamed377-1@oksbi</div>
+        </div>
+      </div>
+      <p style="font-size:0.78rem; color: var(--text-light); margin-bottom:20px; line-height:1.6;">
+        After sending payment, click the button below. Your order will be confirmed instantly.
+      </p>
+      <button class="btn-paid" onclick="markPaid()">
+        ✓ I Have Paid — Confirm Order
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ SUCCESS PAGE ════════════════════════════ -->
+<div id="page-success" class="page">
+  <div class="success-container">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h2 class="success-title">Order Confirmed! 🎉</h2>
+    <p class="success-sub">Thank you for shopping with Sri Devi Silks. Your saree is being prepared with love and care.</p>
+    <div class="order-id-box">
+      <div class="order-id-label">Order ID</div>
+      <div class="order-id-value" id="order-id-display">SDS-000000</div>
+    </div>
+    <button class="btn-track" onclick="showPage('track')">
+      📦 Track Your Order
+    </button>
+    <br><br>
+    <button class="btn-confirm" onclick="showPage('home')" style="margin-top:12px;">
+      Continue Shopping →
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════════════════ TRACK PAGE ════════════════════════════ -->
+<div id="page-track" class="page">
+  <div class="track-container">
+    <div class="track-card">
+      <h2 class="track-title">Track Your Order</h2>
+      <p class="track-order-id">Order ID: <strong id="track-order-id">SDS-000000</strong></p>
+      <div class="track-steps" id="track-steps"></div>
+      <br>
+      <button class="back-btn" onclick="showPage('home')" style="margin-top:20px; width:100%; justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        Back to Home
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ CART PAGE ════════════════════════════ -->
+<div id="page-cart" class="page">
+  <div class="cart-container" id="cart-container">
+    <div>
+      <h2 class="cart-title">Shopping Cart</h2>
+      <div id="cart-items-wrap"></div>
+    </div>
+    <div id="cart-summary-wrap"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ WISHLIST PAGE ════════════════════════════ -->
+<div id="page-wishlist" class="page">
+  <div class="wishlist-container">
+    <h2 class="wishlist-title">My Wishlist ❤️</h2>
+    <div class="products-grid" id="wishlist-grid"></div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════════════════════
+
+const CATEGORIES = [
+  {
+    id:'silk', name:'Silk Sarees',
+    img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&auto=format&fit=crop&q=80',
+    desc:'Pure Silk · Heritage Weaves'
+  },
+  {
+    id:'kanchi', name:'Kanchipuram Sarees',
+    img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop&q=80',
+    desc:'Temple Borders · Zari Work'
+  },
+  {
+    id:'bridal', name:'Bridal Sarees',
+    img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=600&auto=format&fit=crop&q=80',
+    desc:'Wedding Collection · Grand Pallu'
+  },
+  {
+    id:'designer', name:'Designer Sarees',
+    img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=600&auto=format&fit=crop&q=80',
+    desc:'Contemporary Designs · Trendy'
+  },
+  {
+    id:'cotton', name:'Cotton Sarees',
+    img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=600&auto=format&fit=crop&q=80',
+    desc:'Daily Wear · Comfortable'
+  },
+  {
+    id:'fancy', name:'Fancy Sarees',
+    img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=600&auto=format&fit=crop&q=80',
+    desc:'Party Wear · Modern Fusion'
+  },
+  {
+    id:'readymade', name:'Readymade Dresses',
+    img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&auto=format&fit=crop&q=80',
+    desc:'Ready to Wear · Salwar & Kurti'
+  }
+];
+
+const PRODUCTS = {
+  silk: [
+    { id:'silk1', name:'Royal Mysore Pure Silk Saree', price:6800, mrp:8500, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Best Seller' },
+    { id:'silk2', name:'Banarasi Pure Silk Saree in Deep Red', price:7200, mrp:9000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'New Arrival' },
+    { id:'silk3', name:'Handwoven Tussar Silk Saree', price:4500, mrp:5800, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'silk4', name:'South Silk Saree with Gold Zari Border', price:5800, mrp:7200, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Popular' },
+    { id:'silk5', name:'Chanderi Silk Saree with Floral Motifs', price:3800, mrp:5000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'silk6', name:'Patola Pure Silk Double Ikat Saree', price:12000, mrp:15000, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Premium' },
+    { id:'silk7', name:'Uppada Pure Silk Saree with Buttas', price:9500, mrp:12000, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'silk8', name:'Bhagalpuri Silk Saree in Teal', price:4200, mrp:5500, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80&sat=-30', badge:'Trending' },
+    { id:'silk9', name:'Bandhani Silk Saree in Mustard Yellow', price:3500, mrp:4800, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80&hue=60', badge:'' },
+    { id:'silk10', name:'Kerala Kasavu Silk Saree', price:3200, mrp:4200, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80&brightness=10', badge:'' },
+    { id:'silk11', name:'Pochampally Ikkat Silk Saree', price:5500, mrp:7000, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80&hue=30', badge:'Handloom' },
+    { id:'silk12', name:'Paithani Silk Saree with Peacock Motifs', price:8800, mrp:11000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80&hue=120', badge:'' },
+    { id:'silk13', name:'Gadwal Silk Cotton Saree', price:2800, mrp:3800, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80&hue=200', badge:'' },
+    { id:'silk14', name:'Venkatagiri Pure Silk Saree', price:4800, mrp:6200, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80&hue=90', badge:'Classic' },
+    { id:'silk15', name:'Dharmavaram Silk Saree with Contrast Border', price:7500, mrp:9500, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80&hue=270', badge:'' }
+  ],
+  kanchi: [
+    { id:'kanchi1', name:'Classic Kanchipuram Silk Saree in Crimson', price:14500, mrp:18000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'Authentic' },
+    { id:'kanchi2', name:'Kanchipuram Saree with Peacock Zari', price:18000, mrp:22000, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Heritage' },
+    { id:'kanchi3', name:'Grand Kanchipuram Temple Border Saree', price:22000, mrp:28000, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Grand' },
+    { id:'kanchi4', name:'Kanchipuram Saree with Gold Floral Pallu', price:16500, mrp:20000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'kanchi5', name:'Pure Kanchipuram in Royal Blue', price:12800, mrp:16000, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Popular' },
+    { id:'kanchi6', name:'Kanchipuram Bridal Silk with Heavy Zari', price:28000, mrp:35000, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Bridal' },
+    { id:'kanchi7', name:'Kanchipuram Saree in Parrot Green', price:11500, mrp:14500, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'kanchi8', name:'Kanchipuram with Rudraksham Border', price:15000, mrp:18500, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'Temple' },
+    { id:'kanchi9', name:'Kanchipuram Saree in Rose Pink', price:13500, mrp:17000, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'kanchi10', name:'Kanchipuram Saree with Contrast Blouse', price:14000, mrp:17500, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Set' },
+    { id:'kanchi11', name:'Kanchipuram Korvai Silk Saree', price:20000, mrp:25000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'Premium' },
+    { id:'kanchi12', name:'Light Kanchipuram for Muhurtham', price:9500, mrp:12000, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'kanchi13', name:'Kanchipuram Saree in Ivory White', price:16000, mrp:20000, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Auspicious' },
+    { id:'kanchi14', name:'Kanchipuram Double Warp Saree', price:24000, mrp:30000, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Rare' },
+    { id:'kanchi15', name:'Kanchipuram Saree with Mango Pallu', price:17500, mrp:22000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'' }
+  ],
+  bridal: [
+    { id:'bridal1', name:'Grand Bridal Kanchipuram Silk Saree', price:35000, mrp:45000, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Bestseller' },
+    { id:'bridal2', name:'Heavy Zari Bridal Silk Saree in Red', price:42000, mrp:55000, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Bridal' },
+    { id:'bridal3', name:'Bridal Pattu Saree with Full Pallu Design', price:28000, mrp:36000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'bridal4', name:'Royal Maroon Bridal Silk Saree', price:32000, mrp:40000, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Grand' },
+    { id:'bridal5', name:'Pink Bridal Saree with Gold Embroidery', price:25000, mrp:32000, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'bridal6', name:'Bridal Saree in Peacock Blue with Zari', price:30000, mrp:38000, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Trending' },
+    { id:'bridal7', name:'Traditional Bridal Saree with Blouse Set', price:22000, mrp:28000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'Set' },
+    { id:'bridal8', name:'Bridal Tissue Silk Saree in Gold', price:38000, mrp:48000, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Luxury' },
+    { id:'bridal9', name:'Bridal Saree in Deep Burgundy', price:27000, mrp:34000, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'bridal10', name:'Arunai Bridal Saree with Temple Pallu', price:20000, mrp:26000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'bridal11', name:'Bridal Silk Saree with Stone Work Border', price:45000, mrp:58000, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Premium' },
+    { id:'bridal12', name:'Bridal Saree in Coral Pink', price:24000, mrp:30000, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'bridal13', name:'Bridal Saree with Kundan Embellishment', price:50000, mrp:65000, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Exclusive' },
+    { id:'bridal14', name:'Bridal Meenakari Silk Saree', price:36000, mrp:45000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'Artisan' },
+    { id:'bridal15', name:'Reception Saree in Midnight Blue', price:18000, mrp:24000, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Reception' }
+  ],
+  designer: [
+    { id:'des1', name:'Contemporary Printed Silk Saree', price:4200, mrp:5500, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'New' },
+    { id:'des2', name:'Chiffon Saree with Digital Print', price:2800, mrp:3800, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'des3', name:'Georgette Saree with Sequence Work', price:3500, mrp:4800, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Trending' },
+    { id:'des4', name:'Satin Silk Saree with Floral Embroidery', price:5200, mrp:6800, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'des5', name:'Lace Border Designer Saree', price:3800, mrp:5000, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Fancy' },
+    { id:'des6', name:'Net Saree with Embroidered Pallu', price:4800, mrp:6200, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'des7', name:'Crepe Silk Saree in Pastel Tones', price:3200, mrp:4200, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Pastel' },
+    { id:'des8', name:'Mirror Work Designer Saree', price:6500, mrp:8500, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Artisan' },
+    { id:'des9', name:'Indo-Western Saree with Jacket Blouse', price:7800, mrp:10000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'Fusion' },
+    { id:'des10', name:'Abstract Print Organza Saree', price:4500, mrp:5800, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'des11', name:'Cocktail Saree in Black & Gold', price:8500, mrp:11000, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Party' },
+    { id:'des12', name:'Ruffle Saree in Coral Shade', price:5000, mrp:6500, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Modern' },
+    { id:'des13', name:'Block Print Designer Cotton Silk Saree', price:3000, mrp:4000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'des14', name:'Velvet Border Designer Saree', price:5800, mrp:7500, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'des15', name:'Ombre Dye Georgette Party Saree', price:4200, mrp:5500, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Gradient' }
+  ],
+  cotton: [
+    { id:'cot1', name:'Chettinad Cotton Saree with Checks', price:1200, mrp:1800, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'Daily Wear' },
+    { id:'cot2', name:'Handloom Cotton Saree in Cream', price:950, mrp:1400, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'cot3', name:'Kanchi Cotton Saree with Silk Border', price:1800, mrp:2500, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Popular' },
+    { id:'cot4', name:'Bengal Tant Cotton Saree', price:1100, mrp:1600, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'cot5', name:'Madurai Cotton Saree in Classic White', price:850, mrp:1200, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'Classic' },
+    { id:'cot6', name:'Jamdani Cotton Saree with Floral Weave', price:2200, mrp:3000, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Handloom' },
+    { id:'cot7', name:'Sambalpuri Cotton Ikat Saree', price:2800, mrp:3800, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Ikat' },
+    { id:'cot8', name:'Khadi Cotton Saree in Natural Brown', price:1500, mrp:2200, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'Eco-Friendly' },
+    { id:'cot9', name:'Pochampally Cotton Saree', price:2000, mrp:2800, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'cot10', name:'Chettinad White & Gold Cotton Saree', price:1650, mrp:2200, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'cot11', name:'Mul Cotton Saree in Stripes', price:780, mrp:1100, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Budget' },
+    { id:'cot12', name:'Narayanpet Cotton Saree', price:1350, mrp:1900, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'cot13', name:'Block Print Cotton Saree in Blue', price:1100, mrp:1600, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Block Print' },
+    { id:'cot14', name:'Printed Cotton Saree for Office Wear', price:900, mrp:1300, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Office' },
+    { id:'cot15', name:'Kerala Cotton Kasavu Saree', price:1400, mrp:2000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' }
+  ],
+  fancy: [
+    { id:'fan1', name:'Sequin Work Party Wear Saree', price:4500, mrp:6000, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Party' },
+    { id:'fan2', name:'Butterfly Net Saree with Floral Print', price:3200, mrp:4500, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Trendy' },
+    { id:'fan3', name:'Organza Saree in Silver & Gold', price:5800, mrp:7500, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Glam' },
+    { id:'fan4', name:'Soft Net Saree with Stone Border', price:4200, mrp:5500, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'fan5', name:'Tissue Saree with Gold Shimmer', price:6200, mrp:8000, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Shimmery' },
+    { id:'fan6', name:'Lycra Fancy Saree for Functions', price:2800, mrp:3800, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Comfort' },
+    { id:'fan7', name:'Heavy Embroidered Fancy Saree', price:7500, mrp:9800, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'Premium' },
+    { id:'fan8', name:'Tie & Dye Fancy Saree in Multi-Color', price:3800, mrp:5200, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Colorful' },
+    { id:'fan9', name:'Floral Georgette Fancy Saree', price:3500, mrp:4800, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'fan10', name:'Velvet Saree with Zari Embroidery', price:8500, mrp:11000, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Luxury' },
+    { id:'fan11', name:'Fancy Saree with Patchwork Pallu', price:5000, mrp:6500, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'Unique' },
+    { id:'fan12', name:'Glitter Chiffon Saree in Peach', price:4000, mrp:5300, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'fan13', name:'Banarasi Fancy Saree with Resham Work', price:6800, mrp:8800, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Banarasi' },
+    { id:'fan14', name:'Satin Stripe Fancy Saree in Blue', price:3000, mrp:4200, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'fan15', name:'Kota Fancy Saree with Digital Print', price:2500, mrp:3500, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Kota' }
+  ],
+  readymade: [
+    { id:'rm1', name:'Patiyala Salwar Suit in Cotton', price:1800, mrp:2500, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Comfortable' },
+    { id:'rm2', name:'Anarkali Suit in Georgette Fabric', price:3200, mrp:4500, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Trending' },
+    { id:'rm3', name:'Long Kurti with Palazzo Set', price:2200, mrp:3000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'rm4', name:'Designer Churidar Suit Set', price:2800, mrp:3800, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'Designer' },
+    { id:'rm5', name:'Straight Cut Kurti in Linen', price:1500, mrp:2200, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Office' },
+    { id:'rm6', name:'Lehenga Choli Set in Silk', price:8500, mrp:11000, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'Festive' },
+    { id:'rm7', name:'Salwar Kameez with Embroidery', price:2400, mrp:3400, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'rm8', name:'Printed A-Line Kurti Set', price:1200, mrp:1800, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Daily Wear' },
+    { id:'rm9', name:'Indo-Western Kurta Pant Set', price:3500, mrp:4800, img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80', badge:'Fusion' },
+    { id:'rm10', name:'Sharara Set in Georgette', price:4500, mrp:6000, img:'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80', badge:'Party' },
+    { id:'rm11', name:'Cotton Block Print Kurti with Dupatta', price:1800, mrp:2600, img:'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'rm12', name:'Readymade Saree with Blouse (Stitched)', price:5500, mrp:7200, img:'https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=500&auto=format&fit=crop&q=80', badge:'Ready to Wear' },
+    { id:'rm13', name:'Flared Maxi Dress in Silk Cotton', price:2000, mrp:2800, img:'https://images.unsplash.com/photo-1585488763944-8c51db9bf7f1?w=500&auto=format&fit=crop&q=80', badge:'' },
+    { id:'rm14', name:'Banarasi Lehenga for Girls', price:3800, mrp:5200, img:'https://images.unsplash.com/photo-1630580534194-95c4b9c63c9d?w=500&auto=format&fit=crop&q=80', badge:'Kids' },
+    { id:'rm15', name:'Jacket Style Kurti Set in Silk', price:4200, mrp:5600, img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&auto=format&fit=crop&q=80', badge:'Trendy' }
+  ]
+};
+
+const PRODUCT_DESCS = {
+  silk: 'A stunning handwoven pure silk saree crafted by skilled artisans with rich texture and vibrant color.',
+  kanchi: 'An authentic Kanchipuram saree featuring traditional temple motifs, heavy zari work, and timeless elegance.',
+  bridal: 'A luxurious bridal saree with intricate gold zari embroidery, grand pallu, and rich silk fabric fit for your special day.',
+  designer: 'A contemporary designer saree blending modern aesthetics with traditional craftsmanship for the fashion-forward woman.',
+  cotton: 'A comfortable, breathable handloom cotton saree ideal for daily wear and festive occasions alike.',
+  fancy: 'A glamorous party-wear saree with shimmer, sequins, and statement design details to make you stand out.',
+  readymade: 'A stylish, ready-to-wear ensemble stitched to perfection — no tailoring needed, just wear and shine.'
+};
+
+const FEATURES = {
+  silk: ['Pure mulberry silk fabric','Gold & silver zari border','Comes with matching blouse piece','Certified handloom product'],
+  kanchi: ['100% pure Kanchipuram silk','Authentic GI-tagged product','Heavy 2-strand zari border','Matching blouse included'],
+  bridal: ['Premium bridal silk fabric','Heavy zari & thread embroidery','Grand pallu with full design','Comes with stitched blouse'],
+  designer: ['Premium fabric with quality print','Designer stitched blouse','Dry clean recommended','Festive & party appropriate'],
+  cotton: ['Pure handloom cotton','Lightweight & breathable','Ideal for daily & office wear','Machine washable'],
+  fancy: ['High-quality fabric with shine','Unique designer pattern','Comes with unstitched blouse','Perfect for functions & events'],
+  readymade: ['Ready to wear — no tailoring needed','Quality fabric & fine stitching','Available in standard sizes','Easy to drape & maintain']
+};
+
+// ══════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════
+let currentCat = 'silk';
+let currentProduct = null;
+let currentOrderId = null;
+let buyNowProduct = null;
+let fromPage = 'products';
+
+function getCart() { try { return JSON.parse(localStorage.getItem('sds_cart') || '[]'); } catch { return []; } }
+function setCart(c) { localStorage.setItem('sds_cart', JSON.stringify(c)); }
+function getWishlist() { try { return JSON.parse(localStorage.getItem('sds_wishlist') || '[]'); } catch { return []; } }
+function setWishlist(w) { localStorage.setItem('sds_wishlist', JSON.stringify(w)); }
+function getOrders() { try { return JSON.parse(localStorage.getItem('sds_orders') || '[]'); } catch { return []; } }
+function setOrders(o) { localStorage.setItem('sds_orders', JSON.stringify(o)); }
+
+function updateBadges() {
+  const cart = getCart();
+  const wish = getWishlist();
+  const cb = document.getElementById('cart-badge');
+  const wb = document.getElementById('wishlist-badge');
+  const totalQty = cart.reduce((s,i) => s + i.qty, 0);
+  cb.textContent = totalQty;
+  cb.classList.toggle('show', totalQty > 0);
+  wb.textContent = wish.length;
+  wb.classList.toggle('show', wish.length > 0);
+}
+
+// ══════════════════════════════════════════════════════════════
+// PAGE ROUTING
+// ══════════════════════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'cart') renderCart();
+  if (id === 'wishlist') renderWishlist();
+  if (id === 'categories') renderCategories();
+  updateBadges();
+}
+
+// ══════════════════════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════════════════════
+function showToast(msg, type='info') {
+  const tc = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = 'toast' + (type === 'success' ? ' success' : '');
+  const icon = type === 'success'
+    ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>`
+    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+  t.innerHTML = icon + msg;
+  tc.appendChild(t);
+  setTimeout(() => t.remove(), 3100);
+}
+
+// ══════════════════════════════════════════════════════════════
+// FEATURES STRIP
+// ══════════════════════════════════════════════════════════════
+function initFeaturesStrip() {
+  const feats = [
+    {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', text:'Free Shipping Above ₹5000'},
+    {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>', text:'Express Delivery in Chennai'},
+    {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>', text:'100% Authentic Handlooms'},
+    {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6h13M9 19a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>', text:'Easy Returns & Exchange'},
+    {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', text:'GI-Certified Pure Silk'},
+    {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.49 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.34 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.69 5.69l1.76-1.76a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 14.92z"/></svg>', text:'Call Us: 8610019464'},
+  ];
+  const inner = document.getElementById('features-inner');
+  const doubled = [...feats, ...feats];
+  inner.innerHTML = doubled.map(f => `
+    <div class="feat-item">${f.icon}${f.text}</div>
+  `).join('<span style="color:var(--gold);opacity:0.4;font-size:0.8rem;">✦</span>');
+}
+
+// ══════════════════════════════════════════════════════════════
+// CATEGORIES
+// ══════════════════════════════════════════════════════════════
+function renderCategories() {
+  const grid = document.getElementById('cats-grid');
+  grid.innerHTML = CATEGORIES.map(cat => `
+    <div class="cat-card" onclick="openCategory('${cat.id}')">
+      <img class="cat-card-img" src="${cat.img}" alt="${cat.name}" loading="lazy">
+      <div class="cat-card-overlay"></div>
+      <div class="cat-card-body">
+        <div class="cat-card-name">${cat.name}</div>
+        <div class="cat-card-count">${cat.desc}</div>
+        <button class="cat-explore-btn">
+          Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openCategory(catId) {
+  currentCat = catId;
+  const cat = CATEGORIES.find(c => c.id === catId);
+  document.getElementById('products-cat-title').textContent = cat.name;
+  renderProducts(catId);
+  showPage('products');
+}
+
+// ══════════════════════════════════════════════════════════════
+// PRODUCTS
+// ══════════════════════════════════════════════════════════════
+function renderProducts(catId) {
+  const grid = document.getElementById('products-grid');
+  const prods = PRODUCTS[catId] || [];
+  const wishlist = getWishlist();
+  const cart = getCart();
+  const wishIds = wishlist.map(w => w.id);
+  const cartIds = cart.map(c => c.id);
+
+  grid.innerHTML = prods.map(p => {
+    const inWish = wishIds.includes(p.id);
+    const inCart = cartIds.includes(p.id);
+    const disc = Math.round((1 - p.price / p.mrp) * 100);
+    return `
+    <div class="prod-card" data-id="${p.id}">
+      <div class="prod-img-wrap">
+        <img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy">
+        <button class="prod-wish-btn ${inWish ? 'active' : ''}" onclick="toggleWishlist('${p.id}','${catId}',this)" title="Wishlist">
+          <svg viewBox="0 0 24 24" fill="${inWish ? '#e53935' : 'none'}" stroke="${inWish ? '#e53935' : 'currentColor'}" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+        ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-price">₹${p.price.toLocaleString('en-IN')} <span>₹${p.mrp.toLocaleString('en-IN')}</span>
+          <span style="color:var(--gold);font-size:0.75rem;font-weight:700;margin-left:4px;">${disc}% off</span>
+        </div>
+        <div class="prod-actions">
+          <button class="btn-cart ${inCart ? 'added' : ''}" id="cart-btn-${p.id}" onclick="addToCart('${p.id}','${catId}',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            ${inCart ? 'Added ✓' : 'Add to Cart'}
+          </button>
+          <button class="btn-buy" onclick="buyNow('${p.id}','${catId}')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  `}).join('');
+}
+
+// ══════════════════════════════════════════════════════════════
+// CART ACTIONS
+// ══════════════════════════════════════════════════════════════
+function addToCart(prodId, catId, btn) {
+  const prod = PRODUCTS[catId].find(p => p.id === prodId);
+  if (!prod) return;
+  let cart = getCart();
+  const existing = cart.find(i => i.id === prodId);
+  if (existing) {
+    existing.qty++;
+    showToast('Quantity updated in cart', 'success');
+  } else {
+    cart.push({ ...prod, catId, qty: 1 });
+    showToast('Added to cart!', 'success');
+    if (btn) { btn.classList.add('added'); btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Added ✓'; }
+  }
+  setCart(cart);
+  updateBadges();
+}
+
+function toggleWishlist(prodId, catId, btn) {
+  const prod = PRODUCTS[catId].find(p => p.id === prodId);
+  if (!prod) return;
+  let wish = getWishlist();
+  const idx = wish.findIndex(w => w.id === prodId);
+  if (idx > -1) {
+    wish.splice(idx, 1);
+    btn.classList.remove('active');
+    btn.querySelector('svg').setAttribute('fill','none');
+    btn.querySelector('svg').setAttribute('stroke','currentColor');
+    showToast('Removed from wishlist');
+  } else {
+    wish.push({ ...prod, catId });
+    btn.classList.add('active');
+    btn.querySelector('svg').setAttribute('fill','#e53935');
+    btn.querySelector('svg').setAttribute('stroke','#e53935');
+    showToast('Added to wishlist ❤️', 'success');
+  }
+  setWishlist(wish);
+  updateBadges();
+}
+
+// ══════════════════════════════════════════════════════════════
+// BUY NOW FLOW
+// ══════════════════════════════════════════════════════════════
+function buyNow(prodId, catId) {
+  const prod = PRODUCTS[catId].find(p => p.id === prodId);
+  if (!prod) return;
+  buyNowProduct = { ...prod, catId };
+  currentProduct = buyNowProduct;
+  fromPage = 'products';
+  showDetailPage(prod, catId);
+}
+
+function showDetailPage(prod, catId) {
+  document.getElementById('detail-img').src = prod.img;
+  document.getElementById('detail-img').alt = prod.name;
+  document.getElementById('detail-cat').textContent = CATEGORIES.find(c => c.id === catId)?.name || catId;
+  document.getElementById('detail-name').textContent = prod.name;
+  document.getElementById('detail-price').innerHTML = `₹${prod.price.toLocaleString('en-IN')} <small>₹${prod.mrp.toLocaleString('en-IN')}</small>`;
+  document.getElementById('detail-desc').textContent = PRODUCT_DESCS[catId] || '';
+  const feats = FEATURES[catId] || [];
+  document.getElementById('detail-features').innerHTML = feats.map(f => `<li>${f}</li>`).join('');
+  showPage('detail');
+}
+
+function goBackFromDetail() { showPage('products'); }
+
+function confirmOrder() {
+  showPage('address');
+}
+
+function submitAddress() {
+  const name = document.getElementById('addr-name').value.trim();
+  const phone = document.getElementById('addr-phone').value.trim();
+  const address = document.getElementById('addr-address').value.trim();
+  let valid = true;
+
+  document.getElementById('err-name').classList.remove('show');
+  document.getElementById('err-phone').classList.remove('show');
+  document.getElementById('err-address').classList.remove('show');
+
+  if (!name) { document.getElementById('err-name').classList.add('show'); valid = false; }
+  if (!/^[6-9]\d{9}$/.test(phone)) { document.getElementById('err-phone').classList.add('show'); valid = false; }
+  if (address.length < 10) { document.getElementById('err-address').classList.add('show'); valid = false; }
+
+  if (!valid) return;
+
+  const prod = buyNowProduct || currentProduct;
+  const amount = prod ? `₹${prod.price.toLocaleString('en-IN')}` : '₹0';
+  document.getElementById('pay-amount').textContent = amount;
+
+  localStorage.setItem('sds_pending_order', JSON.stringify({ product: prod, name, phone, address }));
+  showPage('payment');
+}
+
+function markPaid() {
+  const pending = JSON.parse(localStorage.getItem('sds_pending_order') || '{}');
+  const orderId = 'SDS' + Date.now().toString().slice(-6) + Math.floor(Math.random()*100);
+  currentOrderId = orderId;
+
+  const orders = getOrders();
+  orders.push({
+    id: orderId,
+    product: pending.product,
+    address: pending.address,
+    name: pending.name,
+    phone: pending.phone,
+    status: 1,
+    date: new Date().toLocaleDateString('en-IN')
+  });
+  setOrders(orders);
+  localStorage.removeItem('sds_pending_order');
+
+  document.getElementById('order-id-display').textContent = orderId;
+  document.getElementById('track-order-id').textContent = orderId;
+
+  // Clear buy now state
+  buyNowProduct = null;
+  showPage('success');
+}
+
+// ══════════════════════════════════════════════════════════════
+// ORDER TRACKING
+// ══════════════════════════════════════════════════════════════
+function renderTrackPage() {
+  const steps = [
+    { name:'Order Confirmed', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>', time:'Just now' },
+    { name:'Packed', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>', time:'Within 2 hours' },
+    { name:'Shipped', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>', time:'Within 24 hours' },
+    { name:'Out for Delivery', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>', time:'By tomorrow evening' },
+    { name:'Delivered', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>', time:'Expected in 3–5 days' }
+  ];
+  const currentStep = 1; // "Confirmed" is done, "Packed" is current
+  const stepsEl = document.getElementById('track-steps');
+  stepsEl.innerHTML = steps.map((s, i) => {
+    let cls = '';
+    if (i < currentStep) cls = 'done';
+    else if (i === currentStep) cls = 'current';
+    const isLast = i === steps.length - 1;
+    return `
+      <div class="track-step ${cls}">
+        <div class="track-step-icon-wrap">
+          <div class="track-step-icon">${s.icon}</div>
+          ${!isLast ? '<div class="track-step-line"></div>' : ''}
+        </div>
+        <div class="track-step-info">
+          <div class="track-step-name">${s.name}</div>
+          <div class="track-step-time">${i === 0 ? '✓ Completed' : i <= currentStep ? (i === currentStep ? '⟳ In Progress' : '✓ Done') : s.time}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Override showPage to handle tracking
+const _showPage = showPage;
+window.showPage = function(id) {
+  _showPage(id);
+  if (id === 'track') {
+    renderTrackPage();
+    if (currentOrderId) document.getElementById('track-order-id').textContent = currentOrderId;
+  }
+};
+
+// ══════════════════════════════════════════════════════════════
+// CART RENDER
+// ══════════════════════════════════════════════════════════════
+function renderCart() {
+  const cart = getCart();
+  const wrap = document.getElementById('cart-items-wrap');
+  const sumWrap = document.getElementById('cart-summary-wrap');
+
+  if (cart.length === 0) {
+    wrap.innerHTML = `
+      <div class="cart-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <h3>Your cart is empty</h3>
+        <p>Add items to your cart and they'll appear here</p>
+        <br>
+        <button class="btn-confirm" style="max-width:240px;" onclick="showPage('categories')">Browse Products →</button>
+      </div>`;
+    sumWrap.innerHTML = '';
+    return;
+  }
+
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const shipping = subtotal >= 5000 ? 0 : 100;
+  const total = subtotal + shipping;
+
+  wrap.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-cat">${CATEGORIES.find(c => c.id === item.catId)?.name || ''}</div>
+        <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+          <div class="qty-num">${item.qty}</div>
+          <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+        </div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" title="Remove">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6m5 0V4h4v2"/></svg>
+      </button>
+    </div>
+  `).join('');
+
+  sumWrap.innerHTML = `
+    <div class="cart-summary">
+      <div class="cart-summary-title">Order Summary</div>
+      <div class="summary-row"><span>Subtotal (${cart.length} items)</span><span>₹${subtotal.toLocaleString('en-IN')}</span></div>
+      <div class="summary-row"><span>Shipping</span><span>${shipping === 0 ? '<span style="color:#2d6a4f;font-weight:700;">FREE</span>' : '₹' + shipping}</span></div>
+      ${shipping > 0 ? `<div style="font-size:0.75rem;color:var(--text-light);margin-top:-4px;">Add ₹${(5000-subtotal).toLocaleString('en-IN')} more for free shipping</div>` : ''}
+      <div class="summary-row total"><span>Total</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+      <button class="btn-checkout" onclick="cartCheckout()">
+        Proceed to Checkout →
+      </button>
+    </div>
+  `;
+}
+
+function changeQty(id, delta) {
+  let cart = getCart();
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+  setCart(cart);
+  updateBadges();
+  renderCart();
+}
+
+function removeFromCart(id) {
+  let cart = getCart().filter(i => i.id !== id);
+  setCart(cart);
+  updateBadges();
+  renderCart();
+  showToast('Item removed from cart');
+}
+
+function cartCheckout() {
+  const cart = getCart();
+  if (cart.length === 0) return;
+  // Use cart as the "product" for the buy now flow
+  const total = cart.reduce((s,i) => s+i.price*i.qty,0);
+  buyNowProduct = { price: total, name: `${cart.length} item(s) from cart`, img: cart[0].img };
+  showPage('address');
+}
+
+// ══════════════════════════════════════════════════════════════
+// WISHLIST
+// ══════════════════════════════════════════════════════════════
+function renderWishlist() {
+  const wish = getWishlist();
+  const grid = document.getElementById('wishlist-grid');
+
+  if (wish.length === 0) {
+    grid.innerHTML = `
+      <div class="wishlist-empty" style="grid-column:1/-1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <h3>Your wishlist is empty</h3>
+        <p>Tap the ❤️ on any product to save it here</p>
+        <br>
+        <button class="btn-confirm" style="max-width:240px;" onclick="showPage('categories')">Browse Products →</button>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = wish.map(p => {
+    const disc = Math.round((1 - p.price / p.mrp) * 100);
+    return `
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy">
+        <button class="prod-wish-btn active" onclick="removeFromWishlistUI('${p.id}','${p.catId}',this)" title="Remove from wishlist">
+          <svg viewBox="0 0 24 24" fill="#e53935" stroke="#e53935" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-price">₹${p.price.toLocaleString('en-IN')} <span>₹${p.mrp.toLocaleString('en-IN')}</span>
+          <span style="color:var(--gold);font-size:0.75rem;font-weight:700;margin-left:4px;">${disc}% off</span>
+        </div>
+        <div class="prod-actions">
+          <button class="btn-cart" onclick="addToCartFromWishlist('${p.id}','${p.catId}',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Add to Cart
+          </button>
+          <button class="btn-buy" onclick="buyNowFromWishlist('${p.id}','${p.catId}')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  `}).join('');
+}
+
+function removeFromWishlistUI(prodId, catId, btn) {
+  let wish = getWishlist().filter(w => w.id !== prodId);
+  setWishlist(wish);
+  updateBadges();
+  renderWishlist();
+  showToast('Removed from wishlist');
+}
+
+function addToCartFromWishlist(prodId, catId, btn) {
+  addToCart(prodId, catId, btn);
+}
+
+function buyNowFromWishlist(prodId, catId) {
+  const prod = PRODUCTS[catId]?.find(p => p.id === prodId);
+  if (!prod) return;
+  buyNowProduct = { ...prod, catId };
+  currentProduct = buyNowProduct;
+  showDetailPage(prod, catId);
+}
+
+// ══════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  initFeaturesStrip();
+  renderCategories();
+  updateBadges();
+});
+</script>
+</body>
+</html>
